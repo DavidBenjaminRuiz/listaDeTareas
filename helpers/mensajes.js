@@ -2,8 +2,8 @@ require('colors');
 
 
 const mostrarMenu = ()=>{
-
-    console.clear();
+    
+return new Promise(resolve=>{
     console.log('========================'.blue)
     console.log('Seleccione una opcion')
     console.log('========================\n'.blue)
@@ -23,18 +23,29 @@ const mostrarMenu = ()=>{
 
     readLine.question('Seleccione una opcion: ', (opt)=>{
         readLine.close()
-    })
+        console.log(opt)
+        resolve(opt);
+    })    
+})
 
 }
 
     const pausa = () =>{
-        const readLine = require('readline').createInterface({
-            input: process.stdin,
-            output: process.stdout,
-        });
-    
-        readLine.question(`Presione ${'ENTER'.blue} para continuar`, (opt)=>{
-            readLine.close()
+        
+        return new Promise(resolve=>{
+
+
+            const readLine = require('readline').createInterface({
+                input: process.stdin,
+                output: process.stdout,
+            });
+        
+            readLine.question(`Presione ${'ENTER'.blue} para continuar`, (opt)=>{
+                readLine.close()
+                resolve();
+            })
+
+
         })
 
     }
